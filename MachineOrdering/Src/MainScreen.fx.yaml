@@ -1,0 +1,160 @@
+MainScreen As screen:
+
+    "'Machine Type Gallery' As gallery.'BrowseLayout_Vertical_OneImageTwoColumnVariant_ver4.0'":
+        Default: =First(MachineTypes)
+        DelayItemLoading: =true
+        Height: =708
+        Items: =MachineTypes
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =4
+        TemplateSize: =187
+        Width: =200
+        Y: =60
+        ZIndex: =2
+
+        Image2 As image:
+            Height: =200
+            Image: =ThisItem.Photo
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: =Select(Parent)
+            Width: =192
+            ZIndex: =1
+
+        Label2 As label:
+            Color: =Color.White
+            Fill: =If(ThisItem.IsSelected, ColorFade('Header Label'.Fill, 75%), Color.Black)
+            Height: =55
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.Name
+            Width: =192
+            Y: =132
+            ZIndex: =2
+
+    "'Machine Gallery' As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver4.0'":
+        DelayItemLoading: =true
+        Height: =638
+        Items: =Filter(Machines, 'Machine Type ID' = 'Machine Type Gallery'.Selected.'Type ID')
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =288
+        Width: =1165
+        WrapCount: =2
+        X: =200
+        Y: =60
+        ZIndex: =3
+
+        Image3 As image:
+            Height: =184
+            Image: =ThisItem.Photo
+            OnSelect: =Select(Parent)
+            Width: =288
+            ZIndex: =1
+
+        Title2 As label:
+            Align: =Align.Center
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Machine Name'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 64
+            X: =32
+            Y: =184
+            ZIndex: =2
+
+        Subtitle2 As label:
+            Align: =Align.Center
+            Color: =If(ThisItem.Price > 10000, Color.OrangeRed, Color.Gray)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: |-
+                =Text(ThisItem.Price, "$##,###.00", "en-US")
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title2.Width
+            X: =32
+            Y: =220
+            ZIndex: =3
+
+        CompareCheckbox As checkbox:
+            Default: =ThisItem in CompareList
+            OnCheck: =Collect(CompareList, ThisItem)
+            OnSelect: =Select(Parent)
+            OnUncheck: =Remove(CompareList, ThisItem)
+            Text: ="Compare"
+            X: =69
+            Y: =252
+            ZIndex: =4
+
+    CompareButton As button:
+        DisplayMode: =If(CountRows(CompareList) > 0, DisplayMode.Edit, DisplayMode.Disabled)
+        Fill: =RGBA(0, 0, 0, 1)
+        OnSelect: =Navigate(CompareScreen)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Compare " & CountRows(CompareList) & " items"
+        Width: =220
+        X: =1126
+        Y: =711
+        ZIndex: =5
+
+    ClearSelectionButton As button:
+        DisplayMode: =If(CountRows(CompareList) > 0, DisplayMode.Edit, DisplayMode.Disabled)
+        Fill: =RGBA(0, 0, 0, 1)
+        OnSelect: =Clear(CompareList)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Clear Selection"
+        Width: =220
+        X: =223
+        Y: =711
+        ZIndex: =6
+
+    Group3 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =8
+
+        "'Header Label' As label":
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =60
+            Size: =20
+            Text: ="Machine Ordering"
+            Width: =1366
+            ZIndex: =1
+
+        "'User Label' As label":
+            Color: |
+                =Color.Gray
+            Height: =38
+            Text: ="Hello, " & User().FullName
+            Width: =308
+            X: =1038
+            Y: =11
+            ZIndex: =4
+
+        Image5 As image:
+            Height: =72
+            Image: |-
+                ="https://images-us-prod.cms.commerce.dynamics.com/cms/api/qbvttlwqcm/imageFileData/MA20RY?ver=c4b6&m=6&q=100"
+            Tooltip: |-
+                ="https://images-us-prod.cms.commerce.dynamics.com/cms/api/qbvttlwqcm/imageFileData/MA20RY?ver=c4b6&m=6&q=100"
+            Width: =152
+            X: =24
+            ZIndex: =7
+

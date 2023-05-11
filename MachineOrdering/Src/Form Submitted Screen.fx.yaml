@@ -1,0 +1,63 @@
+"'Form Submitted Screen' As screen":
+
+    Label1 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Semibold
+        Height: =52
+        Size: =20
+        Text: ="Your request was submitted successfully."
+        Width: =1366
+        Y: =401
+        ZIndex: =4
+
+    Group3_2 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =20
+        ZIndex: =4
+
+        "'Header Label_3' As label":
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =60
+            Size: =20
+            Text: ="Machine Ordering"
+            Width: =1366
+            ZIndex: =1
+
+        "'User Label_3' As label":
+            Color: |
+                =Color.Gray
+            Height: =38
+            Text: ="Hello, " & User().FullName
+            Width: =308
+            X: =1038
+            Y: =11
+            ZIndex: =2
+
+        Image5_2 As image:
+            Height: =72
+            Image: |-
+                ="https://images-us-prod.cms.commerce.dynamics.com/cms/api/qbvttlwqcm/imageFileData/MA20RY?ver=c4b6&m=6&q=100"
+            Tooltip: |-
+                ="https://images-us-prod.cms.commerce.dynamics.com/cms/api/qbvttlwqcm/imageFileData/MA20RY?ver=c4b6&m=6&q=100"
+            Width: =152
+            X: =61
+            ZIndex: =3
+
+    SubmitButton_1 As button:
+        Fill: =RGBA(0, 0, 0, 1)
+        Height: =47
+        OnSelect: =Clear(CompareList); Navigate(MainScreen, ScreenTransition.Fade)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Return to Main Screen"
+        Width: =261
+        X: =552
+        Y: =464
+        ZIndex: =5
+

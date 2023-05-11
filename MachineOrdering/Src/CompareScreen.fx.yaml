@@ -1,0 +1,648 @@
+CompareScreen As screen:
+    OnVisible: =NewForm('Machine Order Form')
+
+    "'Compare List Gallery' As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver4.0'":
+        DelayItemLoading: =true
+        Height: =708
+        Items: =CompareList
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplateFill: =If(ThisItem.IsSelected, ColorFade('Header Label'.Fill, 75%))
+        TemplatePadding: =0
+        TemplateSize: =288
+        Width: =858
+        Y: =60
+        ZIndex: =1
+
+        "'Machine Photo' As image":
+            Height: =184
+            Image: =ThisItem.Photo
+            OnSelect: =Select(Parent)
+            Width: =288
+            ZIndex: =1
+
+        "'Machine Name' As label":
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Machine Name'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 64
+            X: =32
+            Y: =184
+            ZIndex: =2
+
+        Price As label:
+            Color: =If(ThisItem.Price > 10000, Color.OrangeRed, Color.Gray)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: |-
+                =Text(ThisItem.Price, "$##,###.00", "en-US")
+            VerticalAlign: =VerticalAlign.Top
+            Width: ='Machine Name'.Width
+            X: =32
+            Y: =220
+            ZIndex: =3
+
+        Feature As label:
+            FontWeight: =FontWeight.Normal
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =14
+            Text: =ThisItem.Feature
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 64
+            X: =32
+            Y: =270
+            ZIndex: =5
+
+        "'Avg Cups Per Week' As label":
+            FontWeight: =FontWeight.Normal
+            Height: =25
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =14
+            Text: |-
+                =Concatenate("Avg Expressos/Week: ", ThisItem.'Avg. Espressos/Week')
+            VerticalAlign: =VerticalAlign.Top
+            Width: =244
+            X: =32
+            Y: =326
+            ZIndex: =6
+
+        Description As label:
+            AutoHeight: =true
+            FontWeight: =FontWeight.Normal
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =14
+            Text: =ThisItem.Description
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 64
+            X: =32
+            Y: =370
+            ZIndex: =7
+
+        "'Avg Cups Per Week_1' As label":
+            FontWeight: =FontWeight.Normal
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =14
+            Text: |-
+                =Concatenate("Avg Cups/Week: ", ThisItem.'Avg. Cups/Week')
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 64
+            X: =32
+            Y: =301
+            ZIndex: =8
+
+    Icon1 As icon.ChevronLeft:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =59
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Back()
+        PaddingBottom: =5
+        PaddingLeft: =5
+        PaddingRight: =5
+        PaddingTop: =5
+        Width: =59
+        X: =2
+        Y: =1
+        ZIndex: =6
+
+    "'Machine Order Form' As form":
+        DataSource: ='Machine Orders'
+        Height: =630
+        NumberOfColumns: =1
+        Width: =508
+        X: =858
+        Y: =60
+        ZIndex: =7
+
+        Price_DataCard1 As typedDataCard.currencyEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="crddb_price"
+            Default: =ThisItem.Price
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Machine Orders'],DataSourceInfo.DisplayName,"crddb_price")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =true
+            Update: =Value(DataCardValue5.Text)
+            Width: =508
+            X: =0
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey5 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue5 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: ='Compare List Gallery'.Selected.Price
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey5.Y + DataCardKey5.Height + 5
+                ZIndex: =2
+
+            ErrorMessage3 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue5.Y + DataCardValue5.Height
+                ZIndex: =3
+
+            StarVisible3 As label:
+                Align: =Align.Center
+                Height: =DataCardKey5.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey5.Y
+                ZIndex: =4
+
+        Approver_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="crddb_approver"
+            Default: =ThisItem.Approver
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Machine Orders'],DataSourceInfo.DisplayName,"crddb_approver")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Machine Orders'], DataSourceInfo.MaxLength, "crddb_approver")
+            Required: =false
+            Update: =DataCardValue6.Text
+            Width: =508
+            X: =0
+            Y: =2
+            ZIndex: =1
+
+            DataCardKey6 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue6 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =User().Email
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey6.Y + DataCardKey6.Height + 5
+                ZIndex: =2
+
+            ErrorMessage4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue6.Y + DataCardValue6.Height
+                ZIndex: =3
+
+            StarVisible4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey6.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey6.Y
+                ZIndex: =4
+
+        Comments_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="crddb_comments"
+            Default: =ThisItem.Comments
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Machine Orders'],DataSourceInfo.DisplayName,"crddb_comments")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =151
+            MaxLength: =DataSourceInfo([@'Machine Orders'], DataSourceInfo.MaxLength, "crddb_comments")
+            Required: =false
+            Update: =DataCardValue7.Text
+            Width: =508
+            X: =0
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey7 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue7 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Height: =86
+                HintText: ="Enter Justification"
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey7.Y + DataCardKey7.Height + 5
+                ZIndex: =2
+
+            ErrorMessage5 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue7.Y + DataCardValue7.Height
+                ZIndex: =3
+
+            StarVisible5 As label:
+                Align: =Align.Center
+                Height: =DataCardKey7.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey7.Y
+                ZIndex: =4
+
+        "'Requested By_DataCard1' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="crddb_requestedby"
+            Default: =ThisItem.'Requested By'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Machine Orders'],DataSourceInfo.DisplayName,"crddb_requestedby")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Machine Orders'], DataSourceInfo.MaxLength, "crddb_requestedby")
+            Required: =false
+            Update: =DataCardValue8.Text
+            Width: =508
+            X: =0
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey8 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue8 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =User().Email
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey8.Y + DataCardKey8.Height + 5
+                ZIndex: =2
+
+            ErrorMessage6 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue8.Y + DataCardValue8.Height
+                ZIndex: =3
+
+            StarVisible6 As label:
+                Align: =Align.Center
+                Height: =DataCardKey8.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey8.Y
+                ZIndex: =4
+
+        "'Request Date_DataCard1' As typedDataCard.dateTimeEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="crddb_requestdate"
+            Default: =ThisItem.'Request Date'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Machine Orders'],DataSourceInfo.DisplayName,"crddb_requestdate")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DateValue1.SelectedDate + Time(Value(HourValue1.Selected.Value), Value(MinuteValue1.Selected.Value), 0)
+            Visible: =false
+            Width: =508
+            X: =0
+            Y: =5
+            ZIndex: =1
+
+            DataCardKey9 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DateValue1 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =(Parent.Width - 60) / 2
+                X: =30
+                Y: =DataCardKey9.Y + DataCardKey9.Height + 5
+                ZIndex: =2
+
+            HourValue1 As dropdown:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Text(Hour(Parent.Default),"00")
+                DisplayMode: =Parent.DisplayMode
+                Height: =DateValue1.Height
+                Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+                PaddingBottom: =5
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                PaddingRight: =5
+                PaddingTop: =5
+                Tooltip: =Parent.DisplayName
+                Width: =DateValue1.Width / 2 - 10
+                X: =DateValue1.X + DateValue1.Width + 10
+                Y: =DateValue1.Y
+                ZIndex: =3
+
+            Separator1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Bold
+                Height: =HourValue1.Height
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: |-
+                    =":"
+                Width: =10
+                Wrap: =false
+                X: =HourValue1.X + HourValue1.Width
+                Y: =HourValue1.Y
+                ZIndex: =4
+
+            MinuteValue1 As dropdown:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Text(Minute(Parent.Default),"00")
+                DisplayMode: =Parent.DisplayMode
+                Height: =HourValue1.Height
+                Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"]
+                PaddingBottom: =5
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                PaddingRight: =5
+                PaddingTop: =5
+                Tooltip: =Parent.DisplayName
+                Width: =HourValue1.Width
+                X: =HourValue1.X + HourValue1.Width + Separator1.Width
+                Y: =HourValue1.Y
+                ZIndex: =5
+
+            ErrorMessage7 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =HourValue1.Y + HourValue1.Height
+                ZIndex: =6
+
+            StarVisible7 As label:
+                Align: =Align.Center
+                Height: =DataCardKey9.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey9.Y
+                ZIndex: =7
+
+        "'Machine Name_DataCard2' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="crddb_machinename"
+            Default: =ThisItem.'Machine Name'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Machine Orders'],DataSourceInfo.DisplayName,"crddb_machinename")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Machine Orders'], DataSourceInfo.MaxLength, "crddb_machinename")
+            Required: =true
+            Update: =DataCardValue3.Text
+            Width: =508
+            X: =0
+            Y: =0
+            ZIndex: =8
+
+            DataCardKey3 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue3 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: ='Compare List Gallery'.Selected.'Machine Type' & " - " & Text('Compare List Gallery'.Selected.'Machine Name')
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =59
+                ZIndex: =2
+
+            ErrorMessage2 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue3.Y + DataCardValue3.Height
+                ZIndex: =3
+
+            StarVisible2 As label:
+                Align: =Align.Center
+                Height: =DataCardKey3.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey3.Y
+                ZIndex: =4
+
+    SubmitButton As button:
+        DisplayMode: =If(!IsBlank('Compare List Gallery'.Selected), DisplayMode.Edit, DisplayMode.Disabled)
+        Fill: =RGBA(0, 0, 0, 1)
+        Height: =47
+        OnSelect: =SubmitForm('Machine Order Form'); Navigate('Form Submitted Screen',ScreenTransition.CoverRight)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Submit Machine Request"
+        Width: =261
+        X: =890
+        Y: =643
+        ZIndex: =8
+
+    Group3_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =20
+        ZIndex: =9
+
+        "'Header Label_2' As label":
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =60
+            Size: =20
+            Text: ="Machine Ordering"
+            Width: =1366
+            ZIndex: =3
+
+        "'User Label_2' As label":
+            Color: |
+                =Color.Gray
+            Height: =38
+            Text: ="Hello, " & User().FullName
+            Width: =308
+            X: =1038
+            Y: =11
+            ZIndex: =4
+
+        Image5_1 As image:
+            Height: =72
+            Image: |-
+                ="https://images-us-prod.cms.commerce.dynamics.com/cms/api/qbvttlwqcm/imageFileData/MA20RY?ver=c4b6&m=6&q=100"
+            Tooltip: |-
+                ="https://images-us-prod.cms.commerce.dynamics.com/cms/api/qbvttlwqcm/imageFileData/MA20RY?ver=c4b6&m=6&q=100"
+            Width: =152
+            X: =61
+            ZIndex: =5
+

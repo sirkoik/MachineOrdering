@@ -1,0 +1,240 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "crddb_machineorders",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "crddb_machineorder",
+    "MaxGetRowsCount": 500,
+    "Name": "Machine Orders",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "bpf_crddb_machineorder_new_machineprocurementprocess": "Machine Procurement Process",
+      "crddb_approvalstatus": "Approval Status",
+      "crddb_approveddate": "Approved Date",
+      "crddb_approver": "Approver",
+      "crddb_capitalapproved": "Capital Approved",
+      "crddb_comments": "Comments",
+      "crddb_departmentcontribution": "Department Contribution",
+      "crddb_departmentcontribution_base": "Department Contribution (Base)",
+      "crddb_estimatedshipdate": "Estimated Ship Date",
+      "crddb_machineconfigured": "Machine Configured",
+      "crddb_machinedelivered": "Machine Delivered",
+      "crddb_machinename": "Machine Name",
+      "crddb_machineorder_AsyncOperations": "System Jobs",
+      "crddb_machineorder_BulkDeleteFailures": "Bulk Delete Failures",
+      "crddb_machineorder_DuplicateBaseRecord": "Duplicate Records (crddb_machineorder_DuplicateBaseRecord)",
+      "crddb_machineorder_DuplicateMatchingRecord": "Duplicate Records (crddb_machineorder_DuplicateMatchingRecord)",
+      "crddb_machineorder_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "crddb_machineorder_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "crddb_machineorder_ProcessSession": "Process Sessions",
+      "crddb_machineorder_SyncErrors": "Sync Errors",
+      "crddb_machineorderid": "Machine Order",
+      "crddb_machinereceived": "Machine Received",
+      "crddb_price": "Price",
+      "crddb_price_base": "Price (Base)",
+      "crddb_requestdate": "Request Date",
+      "crddb_requestedby": "Requested By",
+      "crddb_sendsurvey": "Send Survey",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "new_supplierorderid": "Supplier Order ID",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "processid": "Process Id",
+      "stageid": "(Deprecated) Stage Id",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "traversedpath": "(Deprecated) Traversed Path",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Machine Orders",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Machine Orders (Views)",
+    "Name": "_crddb_machineorder_views",
+    "RelatedEntityName": "Machine Orders",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1a2b91be-bbbf-41c1-9825-9d603c2aae23": "Machine Order Advanced Find View",
+      "45b0a9f5-44de-4bc0-aa58-a675e36bdc36": "Inactive Machine Orders",
+      "5e326658-2a06-4cd9-b0cd-26c8195fb0b0": "Machine Order Associated View",
+      "abbb0f38-db46-4e1c-853a-980b80c1ee53": "Machine Order Lookup View",
+      "f2425594-c54a-4eb1-88ea-9240393048d2": "Active Machine Orders"
+    }
+  },
+  {
+    "DisplayName": "Approval Status (Machine Orders)",
+    "Name": "crddb_machineorder_crddb_approvalstatus",
+    "OptionSetInfoNameMapping": {
+      "546170000": "Approve",
+      "546170001": "Reject"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crddb_approvalstatus",
+        "OptionSetReferenceEntityName": "Machine Orders"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "crddb_approvalstatus",
+    "RelatedEntityName": "Machine Orders",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Capital Approved (Machine Orders)",
+    "Name": "crddb_machineorder_crddb_capitalapproved",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crddb_capitalapproved",
+        "OptionSetReferenceEntityName": "Machine Orders"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crddb_capitalapproved",
+    "RelatedEntityName": "Machine Orders",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Machine Configured (Machine Orders)",
+    "Name": "crddb_machineorder_crddb_machineconfigured",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crddb_machineconfigured",
+        "OptionSetReferenceEntityName": "Machine Orders"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crddb_machineconfigured",
+    "RelatedEntityName": "Machine Orders",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Machine Delivered (Machine Orders)",
+    "Name": "crddb_machineorder_crddb_machinedelivered",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crddb_machinedelivered",
+        "OptionSetReferenceEntityName": "Machine Orders"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crddb_machinedelivered",
+    "RelatedEntityName": "Machine Orders",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Machine Received (Machine Orders)",
+    "Name": "crddb_machineorder_crddb_machinereceived",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crddb_machinereceived",
+        "OptionSetReferenceEntityName": "Machine Orders"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crddb_machinereceived",
+    "RelatedEntityName": "Machine Orders",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Send Survey (Machine Orders)",
+    "Name": "crddb_machineorder_crddb_sendsurvey",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crddb_sendsurvey",
+        "OptionSetReferenceEntityName": "Machine Orders"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crddb_sendsurvey",
+    "RelatedEntityName": "Machine Orders",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Machine Orders)",
+    "Name": "crddb_machineorder_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Machine Orders"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Machine Orders",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Machine Orders)",
+    "Name": "crddb_machineorder_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Machine Orders"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Machine Orders",
+    "Type": "OptionSetInfo"
+  }
+]
