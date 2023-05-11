@@ -81,7 +81,7 @@
   },
   "FunctionParamsInvariantScripts": {},
   "FunctionParamsInvariantScriptsOnInstances": {},
-  "HeaderLastSavedDateTimeUTC": "05/11/2023 19:42:47",
+  "HeaderLastSavedDateTimeUTC": "05/11/2023 19:43:24",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {
     "40fb2db1-63ef-4e1b-a04e-305893320483": "\"/providers/microsoft.powerapps/apis/shared_office365users/connections/aca9f487f66c477e97bfd4fcf0317227\""
@@ -256,19 +256,19 @@
     "galleryTemplate2": 9,
     "galleryTemplate2_1": 22,
     "Group3": 1,
-    "Group3_1": 17,
-    "Group3_2": 66,
+    "Group3_1": 20,
+    "Group3_2": 68,
     "Header Label": 0,
     "Header Label_2": 16,
     "Header Label_3": 65,
     "Host": 0,
     "HourValue1": 60,
-    "Icon1": 19,
+    "Icon1": 18,
     "Image2": 6,
     "Image3": 10,
     "Image5": 2,
-    "Image5_1": 18,
-    "Image5_2": 67,
+    "Image5_1": 17,
+    "Image5_2": 66,
     "Label1": 69,
     "Label2": 7,
     "Machine Gallery": 8,
@@ -295,8 +295,8 @@
     "Subtitle2": 12,
     "Title2": 11,
     "User Label": 3,
-    "User Label_2": 20,
-    "User Label_3": 68
+    "User Label_2": 19,
+    "User Label_3": 67
   },
   "ResourcesJsonIndices": {
     "Image-SampleImage": 0
